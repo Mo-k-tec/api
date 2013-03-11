@@ -1,0 +1,5 @@
+{
+  "require": {
+    "symfony/routing": "v2.2.0-RC3"
+  }
+}
