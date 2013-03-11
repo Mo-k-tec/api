@@ -1,4 +1,5 @@
 <?php
+
 namespace Api\Bundle;
 
 interface BundleInterface
