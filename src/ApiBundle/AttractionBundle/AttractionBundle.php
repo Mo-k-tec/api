@@ -6,8 +6,16 @@ use Api\Bundle\BundleInterface;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
 
+/**
+ * Class AttractionBundle
+ *
+ * @package ApiBundle\AttractionBundle
+ */
 class AttractionBundle implements BundleInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getRoutes()
     {
         $routes = new RouteCollection();
