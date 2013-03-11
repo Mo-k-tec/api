@@ -1,5 +1,11 @@
 {
   "require": {
     "symfony/routing": "v2.2.0-RC3"
+  },
+  "autoload": {
+    "psr-0": {
+      "Api": "src/",
+      "ApiBundle": "src/"
+    }
   }
 }
