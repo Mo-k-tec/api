@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiBundle\AttractionBundle;
+namespace ApiBundle\HotelBundle;
 
 use Api\Bundle\BundleInterface;
 use Api\Kernel;
@@ -14,7 +14,7 @@ use Symfony\Component\Templating\Loader\FilesystemLoader;
  *
  * @package ApiBundle\AttractionBundle
  */
-class AttractionBundle implements BundleInterface
+class HotelBundle implements BundleInterface
 {
     /**
      * {@inheritdoc}
@@ -25,16 +25,16 @@ class AttractionBundle implements BundleInterface
 
         // Keys must be unique, same keys will override.
         $routes->add(
-            'at_search',
-            new Route('/search/at', array(
-                '_controller' => '\\ApiBundle\\AttractionBundle\\Controller\\SearchController',
+            'ho_search',
+            new Route('/search/ho', array(
+                '_controller' => '\\ApiBundle\\HotelBundle\\Controller\\SearchController',
                 'method' => 'search',
             ))
         );
         $routes->add(
-            'at_search_range',
-            new Route('/search/at/from/{from}/to/{to}', array(
-                '_controller' => '\\ApiBundle\\AttractionBundle\\Controller\\SearchController',
+            'ho_search_range',
+            new Route('/search/ho/from/{from}/to/{to}', array(
+                '_controller' => '\\ApiBundle\\HotelBundle\\Controller\\SearchController',
                 'method' => 'searchRange',
                 'from' => 0,
                 'to' => 20,

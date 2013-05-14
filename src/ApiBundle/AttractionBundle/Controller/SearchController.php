@@ -4,6 +4,7 @@ namespace ApiBundle\AttractionBundle\Controller;
 
 use Api\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Templating\Loader\FilesystemLoader;
 
 /**
  * Class SearchController
@@ -14,6 +15,11 @@ class SearchController extends AbstractController
 {
     public function search()
     {
-        return new Response('search output');
+        $render = $this->render('search');
+        $response = new Response($render['data'], $render['key']);
+        $response->setTtl(99999);
+
+
+        return $response;
     }
 }

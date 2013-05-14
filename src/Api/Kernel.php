@@ -5,6 +5,12 @@ namespace Api;
 use Api\Bundle\BundleInterface;
 use Api\Bundle\BundleManager;
 use ApiBundle\AttractionBundle\AttractionBundle;
+use ApiBundle\HotelBundle\HotelBundle;
+use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\HttpKernel\Controller\ControllerResolver;
+use Symfony\Component\HttpKernel\EventListener\RouterListener;
+use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,6 +38,8 @@ class Kernel
      */
     protected $routes;
 
+    protected $templates;
+
     /**
      * Build all needed data.
      */
@@ -53,6 +61,7 @@ class Kernel
     {
         return array(
             new AttractionBundle(),
+            new HotelBundle(),
         );
     }
 
@@ -71,16 +80,17 @@ class Kernel
 
         try {
             $route = $matcher->match($request->getPathInfo());
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             // do some error handling here.
-            var_dump($e);
-            return new Response('Error', 500);
+
+            return new Response('Error', 404);
         }
 
-        $uri = $route['controller'];
+        $uri = $route['_controller'];
         $controller = new $uri($request, $route);
 
-        return $controller->{$route['method']}();
+        $response = $controller->{$route['method']}();
+
+        return $response;
     }
 }
